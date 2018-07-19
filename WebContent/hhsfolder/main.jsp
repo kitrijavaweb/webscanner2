@@ -61,7 +61,7 @@
 					<li><a href="#">SQL인젝션</a></li>
 					<li><a href="#">취약한인증</a></li>
 					<li><a href="#">데이터노출</a></li>
-					<li><a href="#">XSS(크로스사이트스크립팅)</a></li>
+					<li><a href="#">XSS(크로스사이트스크립트)</a></li>
 					<li><a href="#">취약한 접근통제</a></li>
 				</ul></li>
 				<!-- 사이드 검사결과  -->
