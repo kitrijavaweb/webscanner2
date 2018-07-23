@@ -7,17 +7,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap core CSS-->
-<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/webscanner/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom fonts for this template-->
-<link href="../vendor/font-awesome/css/font-awesome.min.css"
+<link href="/webscanner/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 <!-- Custom styles for this template-->
-<link href="../css/sb-admin.css" rel="stylesheet">
+<link href="/webscanner/css/sb-admin.css" rel="stylesheet">
 <title>WebScanner - 메인</title>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-		id="mainNav" style=""> <a class="navbar-brand" href="top.jsp">WebScanner</a>
+		id="mainNav" style=""> <a class="navbar-brand" href="/webscanner/webMain.do">WebScanner</a>
 	<button class="navbar-toggler navbar-toggler-right" type="button"
 		data-toggle="collapse" data-target="#navbarResponsive"
 		aria-controls="navbarResponsive" aria-expanded="false"
@@ -40,15 +40,15 @@
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
 				<form class="form-inline my-2 my-lg-0 mr-lg-2">
-					<div class="input-group">
+				<!-- 	<div class="input-group">
 						<input class="form-control" type="text"
-							placeholder="Search for..."> <span
+							placeholder="Search for/webscanner."> <span
 							class="input-group-append">
 							<button class="btn btn-primary" type="button">
 								<i class="fa fa-search"></i>
 							</button>
 						</span>
-					</div>
+					</div> -->
 				</form>
 			</li>
 			<li class="nav-item">
@@ -62,7 +62,7 @@
 	<div class="content-wrapper">
     <div class="container-fluid">
     <!-- 페이지 추가 부분 -->
-    <jsp:include page="${menupath2 }"/>
+    <jsp:include page="${viewpath }"/>
     <!-- 페이지 추가 부분 -->
       </div>
     </div>
@@ -96,9 +96,9 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript [하단 화살표 이벤트]-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/webscanner/vendor/jquery/jquery.min.js"></script>
+    <script src="/webscanner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin.min.js"></script>
+    <script src="/webscanner/js/sb-admin.min.js"></script>
 </body>
 </html>

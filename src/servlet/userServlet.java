@@ -18,7 +18,7 @@ public class userServlet extends HttpServlet {
 		req.setCharacterEncoding("euc-kr");
 		
 			req.setAttribute("menupath", "/template/userPage.jsp");
-//			req.setAttribute("viewpath", "/emp/mypage.jsp");
+			req.setAttribute("viewpath", "/template/adminPage.jsp");
 			HttpSession ses= req.getSession();
 		//res.sendRedirect(view);
 		RequestDispatcher rd= req.getRequestDispatcher("/template/mainLayout.jsp");

@@ -15,9 +15,14 @@
   <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin.css" rel="stylesheet">
+  <style type="text/css">
+  body{
+  background-image: url("https://post-phinf.pstatic.net/MjAxNzAzMjdfMTY0/MDAxNDkwNTc2ODExNDQy.53oCxWZ0zWW3JvBWmOhkQQguVYe9lrH2MNnzd2hLWtQg.-ntAGaWH-WZ9-aUdQmuyfOezMGHc-qvMbzNpm_fKYqIg.JPEG/LG-CNS_%EB%B3%B4%EC%95%88_1.jpg?type=w1200");
+  background-size:cover;
+  }
+  </style>
 </head>
-
-<body class="bg-dark">
+<body>
 <form name="login_frm" action="/webscanner/webMain.do" method="post">
   <div class="container">
     <div class="card card-login mx-auto mt-5">
