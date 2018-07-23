@@ -16,7 +16,7 @@ public class DBUtil {
 	}
 	public static Connection DBconnect(){
 		Connection con = null;		
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 		String user = "scott";
 		String password = "tiger";
 		try {
