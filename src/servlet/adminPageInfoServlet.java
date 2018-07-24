@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "main", urlPatterns = { "/webMain.do" })
-public class userServlet extends HttpServlet {
+@WebServlet(name = "adminPageInfo", urlPatterns = { "/adminPageInfo.do" })
+public class adminPageInfoServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req,HttpServletResponse res) throws ServletException,java.io.IOException{
 		doPost(req, res);
 	}
@@ -18,7 +18,7 @@ public class userServlet extends HttpServlet {
 		req.setCharacterEncoding("euc-kr");
 		
 			req.setAttribute("menupath", "/template/adminPage.jsp");
-			req.setAttribute("viewpath", "/emp/userInfo.jsp");
+			req.setAttribute("viewpath", "/emp/toolInfo.jsp");
 			HttpSession ses= req.getSession();
 		//res.sendRedirect(view);
 		RequestDispatcher rd= req.getRequestDispatcher("/template/mainLayout.jsp");

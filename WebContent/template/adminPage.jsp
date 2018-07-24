@@ -11,27 +11,16 @@
 		<!-- 사이드 회원관리  -->
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
 				title="" data-original-title="회원관리"><a
-				class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
-				href="#customer" data-parent="#exampleAccordion"> <i
+				class="nav-link" href="/webscanner/adminUserInfo.do"> <i
 					class="fa fa-fw fa-users"></i> <span class="nav-link-text">회원관리</span>
 			</a>
-				<ul class="sidenav-second-level collapse" id="customer">
-					<li><a href="#">회원조회</a></li>
-					<li><a href="#">회원정보수정</a></li>
-					<li><a href="#">회원탈퇴</a></li>
-				</ul></li>
+
 			<!-- 사이드 패턴관리  -->
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
 				title="" data-original-title="패턴관리"><a
-				class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
-				href="#weaknessPartten" data-parent="#exampleAccordion"> <i
+				class="nav-link" href="/webscanner/adminPageInfo.do"> <i
 					class="fa fa-fw fa-wrench"></i> <span class="nav-link-text">패턴관리</span>
 			</a>
-				<ul class="sidenav-second-level collapse" id="weaknessPartten">
-					<li><a href="#">SQL인젝션패턴관리</a></li>
-					<li><a href="#">XML인젝션패턴관리</a></li>
-					<li><a href="#">패턴삭제</a></li>
-				</ul></li>
 		</ul>
 </body>
 </html>

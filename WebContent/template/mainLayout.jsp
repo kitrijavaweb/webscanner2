@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,15 +40,7 @@
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
 				<form class="form-inline my-2 my-lg-0 mr-lg-2">
-				<!-- 	<div class="input-group">
-						<input class="form-control" type="text"
-							placeholder="Search for/webscanner."> <span
-							class="input-group-append">
-							<button class="btn btn-primary" type="button">
-								<i class="fa fa-search"></i>
-							</button>
-						</span>
-					</div> -->
+				
 				</form>
 			</li>
 			<li class="nav-item">
@@ -100,5 +92,10 @@
     <script src="/webscanner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="/webscanner/js/sb-admin.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/webscanner/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="/webscanner/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="/webscanner/vendor/datatables/dataTables.bootstrap4.js"></script>
 </body>
 </html>

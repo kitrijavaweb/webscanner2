@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "main", urlPatterns = { "/webMain.do" })
-public class userServlet extends HttpServlet {
+@WebServlet(name = "adminUserInfo", urlPatterns = { "/adminUserInfo.do" })
+public class adminUserInfoServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req,HttpServletResponse res) throws ServletException,java.io.IOException{
 		doPost(req, res);
 	}
