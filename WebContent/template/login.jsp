@@ -10,11 +10,11 @@
   <meta name="author" content="">
   <title>WebScanner - 로그인</title>
   <!-- Bootstrap core CSS-->
-  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/webscanner/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
-  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="/webscanner/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
-  <link href="../css/sb-admin.css" rel="stylesheet">
+  <link href="/webscanner/css/sb-admin.css" rel="stylesheet">
   <style type="text/css">
   body{
   background-image: url("https://post-phinf.pstatic.net/MjAxNzAzMjdfMTY0/MDAxNDkwNTc2ODExNDQy.53oCxWZ0zWW3JvBWmOhkQQguVYe9lrH2MNnzd2hLWtQg.-ntAGaWH-WZ9-aUdQmuyfOezMGHc-qvMbzNpm_fKYqIg.JPEG/LG-CNS_%EB%B3%B4%EC%95%88_1.jpg?type=w1200");
@@ -28,10 +28,9 @@
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">로그인</div>
       <div class="card-body">
-        <form>
           <div class="form-group">
             <label for="InputEmail1">Email address</label>
-            <input class="form-control" id="InputEmail1" type="email" aria-describedby="emailHelp" placeholder="이메일 주소">
+            <input class="form-control" name="id" id="InputEmail1" type="email" aria-describedby="emailHelp" placeholder="이메일 주소">
           </div>
           <div class="form-group">
             <label for="InputPassword1">Password</label>
@@ -44,17 +43,16 @@
             </div>
           </div>
                 <button class="btn btn-primary btn-block" type="submit">로그인</button>
-        </form>
         <div class="text-center">
           <a class="d-block small mt-3" href="register.jsp">회원가입</a>
         </div>
       </div>
     </div>
   </div>
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/webscanner/vendor/jquery/jquery.min.js"></script>
+  <script src="/webscanner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Core plugin JavaScript-->
-  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/webscanner/vendor/jquery-easing/jquery.easing.min.js"></script>
   </form>
 </body>
 

@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "main", urlPatterns = { "/webMain.do" })
-public class userServlet extends HttpServlet {
+@WebServlet(name = "logout", urlPatterns = { "/webout.do" })
+public class logoutServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req,HttpServletResponse res) throws ServletException,java.io.IOException{
 		doPost(req, res);
 	}
@@ -17,18 +17,8 @@ public class userServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException,java.io.IOException{
 		req.setCharacterEncoding("euc-kr");
 		
-			String id=req.getParameter("id");
-			System.out.println("id :"+id);
-			if(id.equals("admin@admin.co.kr")){
-				req.setAttribute("menupath", "/template/adminPage.jsp");
-				req.setAttribute("viewpath", "/emp/userInfo.jsp");
-			}else{
-				req.setAttribute("menupath", "/template/userPage.jsp");
-				req.setAttribute("viewpath", "/emp/fullTest.jsp");	
-			}
-			HttpSession ses= req.getSession();
 		//res.sendRedirect(view);
-		RequestDispatcher rd= req.getRequestDispatcher("/template/mainLayout.jsp");
+		RequestDispatcher rd= req.getRequestDispatcher("/template/login.jsp");
 		rd.forward(req,res);
 	}
 
