@@ -11,14 +11,14 @@
 		<!-- 사이드 회원관리  -->
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
 				title="" data-original-title="회원관리"><a
-				class="nav-link" href="/webscanner/adminUserInfo.do"> <i
+				class="nav-link" href="/webscanner/main/adminUserInfo.do"> <i
 					class="fa fa-fw fa-users"></i> <span class="nav-link-text">회원관리</span>
 			</a>
 
 			<!-- 사이드 패턴관리  -->
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
 				title="" data-original-title="패턴관리"><a
-				class="nav-link" href="/webscanner/adminPageInfo.do"> <i
+				class="nav-link" href="/webscanner/main/adminPageInfo.do"> <i
 					class="fa fa-fw fa-wrench"></i> <span class="nav-link-text">패턴관리</span>
 			</a>
 		</ul>

@@ -1,73 +1,80 @@
+
 package hhspack;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.URI;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
-import org.junit.Before;
+import javax.jws.WebMethod;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
 
-public class seletest { 
+public class seletest {
 	private static WebDriver driver;
-	String Title=null;
-	String URL=null;
-	String alertText="";
-	int responseCode=0;
-	@Before
-	public void beforeurl()throws Exception{
-		URI uri = new URI(driver.getCurrentUrl());
+	String Title = null;
+	String URL = null;
+	String alertText = "";
+
+	public void beforeurl() throws Exception {
 		URL obj = new URL(driver.getCurrentUrl());
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-		
 		con.setRequestMethod("POST");
-		responseCode = con.getResponseCode();
-		System.out.println("ÀÀ´ä ÄÚµå "+responseCode);
-		String domain =uri.getAuthority()+uri.getPath();
-		System.out.println("Before"+domain);
-		
+		System.out.println("Post ì‘ë‹µ ì½”ë“œ " + con.getResponseCode());
+		System.out.println("ì—ëŸ¬ë©”ì„¸ì§€" + con.getErrorStream());
 	}
-	
+	@WebMethod
+	public static void crawl(String url,String urltitle) throws IOException{
+		Document doc = Jsoup.connect(url).get();
+		System.out.println("--------------------------------------------");
+		System.out.println(urltitle);
+		System.out.println(doc);
+		System.out.println("--------------------------------------------");
+	}
 	@BeforeClass
-	public static void setup() throws Exception{
-		System.setProperty("webdrivet.chrome.driver", "C:\\chromedriver.exe");//Å©·Ò µå¶óÀÌ¹ö ÆÄÀÏ °æ·Î¼³Á¤
-	 driver =new ChromeDriver();
-	 driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS); // ÀÀ´ä½Ã°£ 1ÃÊ¼³Á¤
-	 driver.get("http://211.42.204.5:8088/WebProject/main/Main.html"); //Á¢¼ÓÇÒ »çÀÌÆ®
+	public static void setup() throws Exception {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");// í¬ë¡¬
+																				// ë“œë¼ì´ë²„
+																				// íŒŒì¼
+																				// ê²½ë¡œì„¤ì •
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS); // ì‘ë‹µì‹œê°„
+																		// 1ì´ˆì„¤ì •
+		driver.get("http://14.36.28.181/kitri/main/main.web"); // ì ‘ì†í• 
+																			// ì‚¬ì´íŠ¸
 	}
+
 	@Test
-	public void login_test() throws Exception{
-		System.out.println("·Î±×ÀÎ");
-		driver.findElement(By.xpath("/html/body/div[1]/div/a[2]")).click(); //¸ŞÀÎ¸Ş´º ·Î±×ÀÎ ¹öÆ°
-		driver.findElement(By.xpath("/html/body/form/table/tbody/tr[2]/td[2]/input")).sendKeys("admin");
-		driver.findElement(By.xpath("/html/body/form/table/tbody/tr[3]/td[2]/input")).sendKeys("tes");
-		driver.findElement(By.xpath("/html/body/form/table/tbody/tr[4]/td/a[1]")).click(); //·Î±×ÀÎÆäÀÌÁö ·Î±×ÀÎ ¹öÆ°
-		Alert alert = driver.switchTo().alert();// ÆË¾÷Ã¢ Ã³¸®
-		alert.accept();
-	}
-	/*@Test
-	public void write_borard_test() throws Exception{
-		System.out.println("°Ô½ÃÆÇ");
-		driver.findElement(By.xpath("/html/body/table/tbody/tr[14]/td/a[3]")).click();//°Ô½ÃÆÇ ±Û¾²±â ¹öÆ° 
-	}
-	
-	@Test
-	public void write_board_test() throws Exception{
-		driver.findElement(By.name("BOARD_SUBJECT")).sendKeys("¼¿·¹´Ï¿ò Å×½ºÆ®");
-		driver.findElement(By.name("BOARD_CONTENT")).sendKeys("<script>\n");
-		driver.findElement(By.name("BOARD_CONTENT")).sendKeys("alert(\"¼¿·¹´Ï¿òÅ×½ºÆ®!\")");
-		driver.findElement(By.name("BOARD_CONTENT")).sendKeys("</script>");
-		driver.findElement(By.xpath("/html/body/form/table/tbody/tr[8]/td/a[1]")).click();//°Ô½ÃÆÇ µî·Ï
-	}
-	@Test
-	public void board_out()throws Exception{
+	//ë™ì  í¬ë¡¤ë§ í…ŒìŠ¤íŠ¸
+	public void login_test() throws Exception {
+		List<WebElement> linkElements = driver.findElements(By.tagName("a"));
+		String[] linkTexts = new String[linkElements.size()];
+		int i = 0;
 		
-	}*/
-} 
+		for (WebElement e : linkElements) { //linkElements ì˜  aíƒœê·¸ ê°’ì„ WebElemnet eì˜ ê°’ì´ ëœë‹¤.
+			linkTexts[i] = e.getText(); // linkElements aíƒœê·¸ ê°’ì˜ Text ê°’ì„ linkTextsì— ë„£ëŠ”ë‹¤.
+			System.out.println(linkTexts[i].toString());
+			i++;
+		}
+
+		for (String t : linkTexts) { 
+			driver.findElement(By.linkText(t)).click();
+			crawl(driver.getCurrentUrl(),driver.getTitle());
+			driver.manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
+			driver.navigate().back();
+		}
+	}
+}

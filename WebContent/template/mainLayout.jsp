@@ -17,7 +17,7 @@
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-		id="mainNav" style=""> <a class="navbar-brand" href="/webscanner/webMain.do">WebScanner</a>
+		id="mainNav" style=""> <a class="navbar-brand" href="#">WebScanner</a>
 	<button class="navbar-toggler navbar-toggler-right" type="button"
 		data-toggle="collapse" data-target="#navbarResponsive"
 		aria-controls="navbarResponsive" aria-expanded="false"
@@ -82,7 +82,7 @@
           <div class="modal-body">현재 작업을 종료 하고싶으시다면 "로그아웃"버튼을 눌러주십시오.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-            <a class="btn btn-primary" href="/webscanner/webout.do">로그아웃</a>
+            <a class="btn btn-primary" href="/webscanner/webLogout.do">로그아웃</a>
           </div>
         </div>
       </div>

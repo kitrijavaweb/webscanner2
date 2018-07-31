@@ -7,6 +7,7 @@
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <title>CSS Tips</title>
 <style>
 .jbTable {
@@ -32,6 +33,11 @@
 
 .jbText input {
 	width: 100%;
+}
+body{
+    font: 16px "Montserrat", sans-serif;
+    line-height: 1.8;
+    color: #555555;
 }
 </style>
 </head>

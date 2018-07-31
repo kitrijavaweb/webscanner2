@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "full", urlPatterns = { "/full.do" })
+@WebServlet(name = "full", urlPatterns = { "/main/full.do" })
 public class fullServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req,HttpServletResponse res) throws ServletException,java.io.IOException{
 		doPost(req, res);

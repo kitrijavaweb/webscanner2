@@ -11,7 +11,7 @@
 		<!-- 사이드 전체검사  -->
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
 				title="" data-original-title="전체검사"><a class="nav-link"
-				href="/webscanner/full.do"> <i class="fa fa-fw fa-desktop"></i> <span
+				href="/webscanner/main/full.do"> <i class="fa fa-fw fa-desktop"></i> <span
 					class="nav-link-text">전체검사</span>
 			</a>
 			<!-- 사이드 부분검사  -->
@@ -22,7 +22,7 @@
 					class="fa fa-fw fa-list-alt"></i> <span class="nav-link-text">부분검사</span>
 			</a>
 				<ul class="sidenav-second-level collapse" id="weakness">
-					<li><a href="/webscanner/partial.do">XSS(크로스사이트스크립트)</a></li>
+					<li><a href="/webscanner/main/partial.do">XSS(크로스사이트스크립트)</a></li>
 				</ul></li>
 				<!-- 사이드 검사결과  -->
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
