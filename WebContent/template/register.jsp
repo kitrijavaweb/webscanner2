@@ -64,7 +64,7 @@
 					<tr>
 						<td style="width: 110px;"><h5>아이디</h5></td>
 						<td><input class="form-control" type="text" id="userId"
-							name="userId" maxLength="20" placeholder="아이디를 입력해주세요."></td>
+							name="userId" placeholder="아이디를 입력해주세요."></td>
 						<td style="width: 110px;"><button class="btn btn-primary"
 								onclick="registerCheck()" type="button">중복확인</button></td>
 					</tr>

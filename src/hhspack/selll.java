@@ -6,122 +6,113 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class selll {
 	private static WebDriver driver;
+	private static String URL = "http://www.douzone.com/";
+	private static String Title = null;
 	
-	//접속한 URL 헤더 정보
-	public static void urlHeader(String inputurl){
-		try {
-		    URL url = new URL(inputurl);
-		 
-		    URLConnection urlCon = url.openConnection();
-		 
-		    // InputStream : 해당 호스트의 페이지 정보를 가져온다.
-		    System.out.println("urlCon.getContentType() : " + urlCon.getContentType());
-		    System.out.println("urlCon.getContent() : " + urlCon.getContent());
-		    System.out.println("urlCon.getContentEncoding() : " + urlCon.getContentEncoding());
-		    Map<String, List<String>> map = urlCon.getHeaderFields();
-		    Iterator<String> iterator = map.keySet().iterator();
-		    while (iterator.hasNext()) {
-		        String key = iterator.next();
-		        System.out.println("Header Info : " + key + " = " + map.get(key));
-		    }
-		 
-		} catch (MalformedURLException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		} catch (IOException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		}
-
-	}
 	
-	//화면캡쳐
-	public static void snapshot(String imagename){
-		String path = System.getProperty("path", "C:\\logs\\");
-		String id = System.getProperty("id", "admin");
-		String filename = "screenshot_" + imagename + "_" + id + ".png";
-		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		try {
-			FileUtils.copyFile(scrFile, new File(path + filename));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	//초기 세팅 
 	public static void setup() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");// 크롬 드라이버 경로설정
-		String url="http://211.42.204.62:8088/WebProject/main/Main.html";
+		String driverpath="src/driver/chromedriver.exe";
+		System.setProperty("webdriver.chrome.driver", driverpath);// 크롬 드라이버 경로설정
+		ChromeOptions option = new ChromeOptions();
+		option.addArguments("--headless");//크롬창 프로세스상태로 유지
 		driver = new ChromeDriver();
 		driver.manage().window().maximize(); // 윈도우창 최대화
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS); // 응답시간 1초설정
-		driver.get(url); // 접속할 사이트
-		snapshot("Start");
-		urlHeader(driver.getCurrentUrl());
+		driver.get(URL); // 접속할 사이트
+		Title = driver.getTitle();
 //		http://211.42.204.62:8088/WebProject/main/Main.html
 	}
-	// 상태값 및 에러메세지
-	public static void getresponse() throws Exception {
-		URL obj = new URL(driver.getCurrentUrl());
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-		con.setRequestMethod("POST");
-		System.out.println("Post 응답 코드 " + con.getResponseCode());
-		System.out.println("에러메세지" + con.getErrorStream());
-	}
-	//로그인 페이지 접속
-	public void loginPage() throws Exception {
-		setup();
-		driver.findElement(By.xpath("/html/body/div[1]/div/a[2]")).click(); // 메인메뉴 로그인 클릭
-		String[] str = { "abcd", "test1", "admin", "admins" };
-		String[] str2 = { "abcd", "test1", "admi	s", "admin" };
-		for (int i = 0; i < str.length; i++) {
-			for (int j = 0; j < str2.length; j++) {
-				try {
-					driver.findElement(By.xpath("/html/body/form/table/tbody/tr[2]/td[2]/input")).sendKeys(str[i]);
-					driver.findElement(By.xpath("/html/body/form/table/tbody/tr[3]/td[2]/input")).sendKeys(str2[j]);
-					driver.findElement(By.xpath("/html/body/form/table/tbody/tr[4]/td/a[1]")).click(); // 로그인페이지
-					urlHeader(driver.getCurrentUrl());
-					Alert alert = driver.switchTo().alert();// 팝업창 처리
-					alert.accept();
-				} catch (org.openqa.selenium.NoAlertPresentException e) {
-					snapshot("SQLinJection");
-					System.out.println("인젝션 성공");
-				} catch (org.openqa.selenium.NoSuchElementException e) {
-					break;
-				}catch(org.openqa.selenium.UnhandledAlertException e){
-					Alert alert = driver.switchTo().alert();// 팝업창 처리
-					alert.accept();
-				}
+	//XPATH 주소 생성
+	private String generateXPATH(WebElement childElement, String current) {
+		String childTag = childElement.getTagName();
+		if (childTag.equals("html")) {
+			return "/html[1]" + current;
+		}	
+		WebElement parentElement = childElement.findElement(By.xpath(".."));
+		List<WebElement> childrenElements = parentElement.findElements(By.xpath("*"));
+		int count = 0;
+		for (int i = 0; i < childrenElements.size(); i++) {
+			WebElement childrenElement = childrenElements.get(i);
+			String childrenElementTag = childrenElement.getTagName();
+			if (childTag.equals(childrenElementTag)) {
+				count++;
 			}
-		} // for문 끝
+			if (childElement.equals(childrenElement)) {
+				return generateXPATH(parentElement, "/" + childTag + "[" + count + "]" + current);
+			}
+		}
+		return null;
 	}
-	//게시판 점검
-	public void board() throws Exception{
-		driver.findElement(By.xpath("/html/body/table/tbody/tr[14]/td/a[3]")).click();
-		driver.findElement(By.xpath("/html/body/form/table/tbody/tr[3]/td[2]/input")).sendKeys("테스트중입니다.");
-		driver.findElement(By.xpath("/html/body/form/table/tbody/tr[4]/td[2]/textarea")).sendKeys("테스트중입니다.");
-		driver.findElement(By.xpath("/html/body/form/table/tbody/tr[8]/td/a[1]")).click();
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("(//a)[1]")).click();
-		snapshot("BoardResult");
+	
+	
+	//모든 A태그 가져오기 
+	public String[] getATage() throws Exception{
+		setup();
+		List<WebElement> linkElements = driver.findElements(By.tagName("a"));
+		String[] linkTexts = new String[linkElements.size()];
+		int i = 0;
+		for (WebElement e : linkElements) { //linkElements 의  a태그 값을 WebElemnet e의 값이 된다.
+			if(!e.getText().trim().equals("")&e.getText()!=null){
+				linkTexts[i] = e.getText(); // linkElements a태그 값의 Text 값을 linkTexts에 넣는다.
+				System.out.println(linkTexts[i].toString());
+				i++;
+			}
+		}
+		return linkTexts;
+	}
+	//input="Text" 삽입공격
+	public void inputText() throws Exception{
+		WebElement inputText =driver.findElement(By.xpath("//input[@type='text']"));
+			inputText.sendKeys("테스트");
+	}
+	//A태그 SCAN
+	public void AtagScan(String[] linkTexts) throws Exception{
+		ArrayList<List<WebElement>> linkList = new ArrayList<List<WebElement>>();
+		for (String t : linkTexts) { 
+				try{
+					driver.findElement(By.linkText(t)).click();
+					linkList.add(driver.findElements(By.tagName("a")));
+				}catch(org.openqa.selenium.UnhandledAlertException|
+						org.openqa.selenium.NoSuchElementException |org.openqa.selenium.NoAlertPresentException e){
+					driver.switchTo().alert().accept();
+					System.out.println("알림창 확인완료");
+				}catch(org.openqa.selenium.ElementNotVisibleException e){
+					driver.navigate().refresh();
+				}catch(IllegalArgumentException	 e){
+					HashSet<List<WebElement>> hs = new HashSet<List<WebElement>>(linkList);
+					linkList =new ArrayList<List<WebElement>>(hs);
+					System.out.println("사이즈"+linkList.size());
+				}
+		}
 	}
 	public static void main(String[] args) throws Exception {
 		selll start = new selll();
-		start.loginPage();
-		start.board();
+		String[] linkTexts=start.getATage();
+		start.AtagScan(linkTexts);
 	}
 }
