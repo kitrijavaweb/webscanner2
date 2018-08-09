@@ -1,0 +1,42 @@
+@CHARSET "EUC-KR";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+#piechart{
+	 background-color: #333;
+	 color: white;
+	 font-size: 12px;
+	 font-family: 'Hanna';
+}
+tbody{
+	font-family: 'Hanna';
+	font-size: 12px;
+}
+#getdecrp{
+	 color: red;
+	 font-size: 12px;
+	 font-family: 'Hanna';
+}
+thead tr{
+	font-size: 10px;
+		
+}
+.label-warning{
+	background-color:#f0ad4e
+}
+.label-danger{
+	background-color:#d9534f
+}
+.label{
+	border:1px solid #000
+	display:inline;
+	padding:.2em .6em .3em;
+	font-size:75%;
+	font-weight:700;
+	line-height:1;
+	color:#fff;
+	text-align:center;
+	white-space:nowrap;
+	vertical-align:baseline;
+	border-radius:.25em; 
+}

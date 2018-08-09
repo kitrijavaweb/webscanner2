@@ -16,7 +16,9 @@ thead th{
 	background-color:#006DCC;
 	color: white;
 	text-align:center;
+	font-size: 9px;
 }
+
 
 tr td:first-child,
 tr th:first-child{
@@ -61,3 +63,4 @@ h1{
 	margin: 0 auto;
 	pointer-events:none;
 }
+#tr_userTable{

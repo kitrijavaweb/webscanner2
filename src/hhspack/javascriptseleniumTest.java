@@ -63,22 +63,44 @@ public class javascriptseleniumTest {
 			if (e.getAttribute("onclick") != null) {
 				test[i] = e.getAttribute("onclick");
 				System.out.println("스트링 배열에 담겨진 데이터 ===>" + test[i].toString());
-				if (test[i].trim().toString().contains("('/")) {
+				if (test[i].trim().toString().contains("topMnuGo")) {
 					topMnugolist.add(test[i].trim().toString());
 					System.out.println("해쉬맵에 담겨진 데이터(topMnuGo)===>" + testmap.get(h));
 					h++;
 					System.out.println("topMnuGo를 받아온 해쉬맵 사이즈 =====>"+testmap.size());
-				}
+				} else if (test[i].trim().toString().contains("footMnuGo")) {
+					test[i].trim().toString().contains("footMnuGo");
+					footMnugolist.add(test[i].trim().toString());
+					System.out.println("해쉬맵에 담겨진 데이터(footMnuGo) ===>" + testmap.get(h));
+					System.out.println("footMnuGo를 받아온 해쉬맵 사이즈 =====>"+testmap.size());
+					h++;
+				} 
 			}
 			i++;
 		}
 		System.out.println("TOpMnuGo 사이즈 ****************************>"+topMnugolist.size());
+		System.out.println("footMnugo 사이즈 ****************************>"+footMnugolist.size());
 		int count =0;
 		for(i=0; i<topMnugolist.size();i++){
-			int IndexTop=topMnugolist.get(i).indexOf("('/");
-			int IndexTopEnd=topMnugolist.get(i).indexOf("')");
+			int IndexTop=topMnugolist.get(i).indexOf("(");
+			int IndexTopEnd=topMnugolist.get(i).indexOf(")");
 			String topValue = topMnugolist.get(i).substring(IndexTop, IndexTopEnd);
 			System.out.println("Topmnu데이터================****>"+topMnugolist.get(i).substring(IndexTop, IndexTopEnd));
+			for(int j=0;j<footMnugolist.size();j++){
+				int IndexFoot=footMnugolist.get(j).indexOf("(");
+				int IndexFootEnd=footMnugolist.get(j).indexOf(")");
+				String result=footMnugolist.get(j).substring(IndexFoot, IndexFootEnd);
+				System.out.println("Footmnu데이터================****>"+result);
+				if(topValue.contains(result)){
+					System.out.println("======================================================================");
+					System.out.println("중복되는 값이 있음"+count);
+					System.out.println("원본값(top) ==========>"+topMnugolist.get(i));
+					System.out.println("원본값(footer) ==========>"+footMnugolist.get(j));
+					System.out.println("공통된 값 ===============>"+result);
+					System.out.println("======================================================================");
+					count++;
+				}
+			}
 		}
 //		try{
 //			int j=0;

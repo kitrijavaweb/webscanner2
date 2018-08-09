@@ -27,7 +27,7 @@
 				<!-- 사이드 검사결과  -->
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
 				title="" data-original-title="검사결과"><a class="nav-link"
-				href="#"> <i class="fa fa-fw fa-area-chart"></i> <span
+				href="/webscanner/main/resultuser.do"> <i class="fa fa-fw fa-area-chart"></i> <span
 					class="nav-link-text">검사결과</span>
 			</a></li>
 		</ul>

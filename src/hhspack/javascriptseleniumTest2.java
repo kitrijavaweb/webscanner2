@@ -17,6 +17,8 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -33,94 +35,75 @@ public class javascriptseleniumTest2 {
 	private static WebDriver driver;
 	private static String URL = "http://14.36.28.181/kitri/main/main.web";
 	private static String Title = null;
-	
-	
-	//초기 세팅 
+
+	// 초기 세팅
 	public static void setup() throws Exception {
-		String driverpath="src/driver/chromedriver.exe";
-		System.setProperty("webdriver.chrome.driver", driverpath);// 크롬 드라이버 경로설정
+		String driverpath = "src/driver/chromedriver.exe";
+		System.setProperty("webdriver.chrome.driver", driverpath);// 크롬 드라이버
+																	// 경로설정
 		ChromeOptions option = new ChromeOptions();
-		option.addArguments("--headless");//크롬창 프로세스상태로 유지
+		option.addArguments("--headless");// 크롬창 프로세스상태로 유지
 		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS); // 응답시간 1초설정
-		driver.get(URL); // 접속할 사이트
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS); // 응답시간
+																		// 1초설정
 		Title = driver.getTitle();
-//		http://211.42.204.62:8088/WebProject/main/Main.html
+		// http://211.42.204.62:8088/WebProject/main/Main.html
 	}
-	
-	
-	//모든 A태그 가져오기 
-	public void javaScriptExcuteTest() throws Exception{
+
+	// 모든 A태그 가져오기
+	public void javaScriptExcuteTest() throws Exception {
 		setup();
-		List<WebElement> linkElements=driver.findElements(By.tagName("a"));	
-		String[] test = new String[linkElements.size()];
-		ArrayList<String> topMnugolist = new ArrayList<String>();
-		ArrayList<String> footMnugolist = new ArrayList<String>();
-		HashMap<Integer, String> testmap = new HashMap<>();
-		int i=0;
-		int h=0;
-		for (WebElement e : linkElements) {
-			if (e.getAttribute("onclick") != null) {
-				test[i] = e.getAttribute("onclick");
-				System.out.println("스트링 배열에 담겨진 데이터 ===>" + test[i].toString());
-				if (test[i].trim().toString().contains("topMnuGo")) {
-					topMnugolist.add(test[i].trim().toString());
-					System.out.println("해쉬맵에 담겨진 데이터(topMnuGo)===>" + testmap.get(h));
-					h++;
-					System.out.println("topMnuGo를 받아온 해쉬맵 사이즈 =====>"+testmap.size());
-				} else if (test[i].trim().toString().contains("footMnuGo")) {
-					test[i].trim().toString().contains("footMnuGo");
-					footMnugolist.add(test[i].trim().toString());
-					System.out.println("해쉬맵에 담겨진 데이터(footMnuGo) ===>" + testmap.get(h));
-					System.out.println("footMnuGo를 받아온 해쉬맵 사이즈 =====>"+testmap.size());
-					h++;
-				} 
-			}
-			i++;
-		}
-		System.out.println("TOpMnuGo 사이즈 ****************************>"+topMnugolist.size());
-		System.out.println("footMnugo 사이즈 ****************************>"+footMnugolist.size());
-		int count =0;
-		for(i=0; i<topMnugolist.size();i++){
-			int IndexTop=topMnugolist.get(i).indexOf("(");
-			int IndexTopEnd=topMnugolist.get(i).indexOf(")");
-			String topValue = topMnugolist.get(i).substring(IndexTop, IndexTopEnd);
-			System.out.println("Topmnu데이터================****>"+topMnugolist.get(i).substring(IndexTop, IndexTopEnd));
-			for(int j=0;j<footMnugolist.size();j++){
-				int IndexFoot=footMnugolist.get(j).indexOf("(");
-				int IndexFootEnd=footMnugolist.get(j).indexOf(")");
-				String result=footMnugolist.get(j).substring(IndexFoot, IndexFootEnd);
-				System.out.println("Footmnu데이터================****>"+result);
-				if(topValue.contains(result)){
-					System.out.println("======================================================================");
-					System.out.println("중복되는 값이 있음"+count);
-					System.out.println("원본값(top) ==========>"+topMnugolist.get(i));
-					System.out.println("원본값(footer) ==========>"+footMnugolist.get(j));
-					System.out.println("공통된 값 ===============>"+result);
-					System.out.println("======================================================================");
-					count++;
+		try {
+			String url = "";
+			HashMap<String, String> hash_LinkList = new HashMap<>();
+			Document doc = Jsoup.connect(url).get();
+
+			String title = doc.title();
+			// 첫 페이지 A태그 관련 href 가져오기
+			Elements links = doc.select("a[href]");
+			List<String> url_array = new ArrayList<String>();
+			int i = 0;
+			url_array.add(url);
+			hash_LinkList.put(url, title);
+			// Iterator<String> keySetIterator = h.keySet().iterator();
+			// A태그의 링크가 없을까지 반복작업
+			while ((i <= hash_LinkList.size())) {
+				try {
+					// facebook 이라는 단어가 포함되면 삭제
+					driver.navigate().to(url_array.get(i).toString());
+					System.out.println("실행?");
+					title = doc.title();
+					links = doc.select("a[onclick]").not("a[href='#']").not("a[href='#none']").not("a[href='#btn']")
+							.not("a[href='#container']");
+					for (int j = 0; j < links.size(); j++) {
+						if (links.get(j).toString().contains("facebook")) {
+							links.get(j).clearAttributes();
+						} else if (!links.get(j).toString().contains("http")) {
+							String getUrl = "http://14.36.28.181" + links.get(j).attr("href");
+							System.out.println(getUrl);
+						}
+					}
+					// .not("a[href='http://www.facebook.com/kr.kitri?fref=ts']")
+					for (Element link : links) {
+						String res = hash_LinkList.putIfAbsent(link.attr("href"), link.text());
+						if (res == null) {
+							url_array.add(link.attr("href"));
+							System.out.println("URL: " + link.attr("href"));
+							System.out.println("TITLE: " + link.text());
+						}
+					}
+				} catch (Exception e) {
+					// System.out.println("\n" + e);
 				}
+
+				i++;
+
 			}
+		} catch (Exception e) {
+			// e.printStackTrace();
 		}
-//		try{
-//			int j=0;
-//			System.out.println("모든 데이터를 받아온 해쉬맵 사이즈 =====>"+testmap.size());
-//			while((j<=testmap.size())){
-//				System.out.println(j+" : "+testmap.size());
-//				if(testmap.get(j)!=null){
-//				((JavascriptExecutor)driver).executeScript(testmap.get(j));
-//				}
-//				System.out.println("실행카운트=======================>"+j);
-//				j++;
-//			}
-//		}catch(org.openqa.selenium.UnhandledAlertException e){
-//			driver.switchTo().alert().accept();
-//		}catch(org.openqa.selenium.ElementNotVisibleException e){
-//			driver.navigate().refresh();
-//		}finally {
-//			System.out.println("검사중");
-//		}
 	}
+
 	public static void main(String[] args) throws Exception {
 		javascriptseleniumTest2 start = new javascriptseleniumTest2();
 		start.javaScriptExcuteTest();

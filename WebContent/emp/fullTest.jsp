@@ -7,6 +7,7 @@
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <title>CSS Tips</title>
 <style>
@@ -52,11 +53,11 @@ body{
 			<div class="jbTableCell jbText">
 				<div>
 					<div class="cols-md-8">
-						<input type="url" placeholder="url형식에 맞게 입력 바랍니다.">
+						<input type="url" id="url" placeholder="url형식에 맞게 입력 바랍니다.">
 					</div>
 					<div class="cols-md-4">
-						<button class="btn btn-success btn pull-right" type="button">START</button>
-						<button class="btn btn-danger btn pull-right" type="button">STOP</button>
+						<button class="btn btn-success btn pull-right" type="button" id="scanstart">START</button>
+						<button class="btn btn-danger btn pull-right" type="button" id="scanstop">STOP</button>
 					</div>
 				</div>
 				<div class="jbTableCell jbSubmit"></div>
@@ -70,19 +71,11 @@ body{
 				role="progressbar" aria-valuenow="75" aria-valuemin="0"
 				aria-valuemax="100" style="width: 75%"></div>
 		</div>
-		<textarea class="form-control" id="exampleTextarea" rows="10">
-                전체 검사 실행(10:00 경과)
-                인젝션 취약점 점검중.....
-                인젝션 취약점 점검 완료(02:00)
-                
-                다음 검사진행
-                취약한 인증 점검중.....
-                취약한 인증 점검 완료(05:00)
-                 ......
-                전체 검사 완료(총 15:00)
+		<textarea class="form-control" id="resultText" rows="10">
       </textarea>
 	</div>
 	<br />
 	<br />
+	<script src="/webscanner/js/scan/scan.js" charset='UTF-8'></script>
 </body>
 </html>

@@ -14,7 +14,7 @@ public class testcrawl {
 		try {
 			String url = "";
 			HashMap<String, String> hash_LinkList = new HashMap<>();
-			url = "http://www.douzone.com/";
+			url = "http://14.36.28.181/academy/main/main.web";
 			Document doc = Jsoup.connect(url).get();
 
 			String title = doc.title();
@@ -32,13 +32,15 @@ public class testcrawl {
 					url = url_array.get(i).toString();
 					doc = Jsoup.connect(url).get();
 					title = doc.title();
-					links = doc.select("a[href]").not("a[href='#']").not("a[href='#none']").not("a[href='#btn']").not("a[href='#container']");
+					links = doc.select("a[href]");
+					//.not("a[href='#']").not("a[href='#none']").not("a[href='#btn']").not("a[href='#container']")
 					for (int j = 0; j < links.size(); j++) {
 						if (links.get(j).toString().contains("facebook")) {
 							links.get(j).clearAttributes();
 						} else if (!links.get(j).toString().contains("http")) {
-							String getUrl="http://14.36.28.181"+links.get(j).attr("href");
-							System.out.println(getUrl);
+							String getUrl=links.get(j).attr("href");
+							String onclickUrl=links.get(j).attr("onclick");
+							System.out.println(onclickUrl);
 						}
 					}
 					// .not("a[href='http://www.facebook.com/kr.kitri?fref=ts']")
@@ -51,14 +53,14 @@ public class testcrawl {
 						}
 					}
 				} catch (Exception e) {
-					// System.out.println("\n" + e);
+//					 System.out.println("\n" + e);
 				}
 
 				i++;
 
 			}
 		} catch (Exception e) {
-			// e.printStackTrace();
+//			 e.printStackTrace();
 		}
 	}
 }
