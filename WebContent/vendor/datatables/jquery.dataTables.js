@@ -1737,14 +1737,14 @@
 		 * sZeroRecords - assuming that is given.
 		 */
 		if ( ! lang.sEmptyTable && zeroRecords &&
-			defaults.sEmptyTable === "No data available in table" )
+			defaults.sEmptyTable === "저장된 데이터가 없습니다." )
 		{
 			_fnMap( lang, lang, 'sZeroRecords', 'sEmptyTable' );
 		}
 	
 		/* Likewise with loading records */
 		if ( ! lang.sLoadingRecords && zeroRecords &&
-			defaults.sLoadingRecords === "Loading..." )
+			defaults.sLoadingRecords === "불러오는중..." )
 		{
 			_fnMap( lang, lang, 'sZeroRecords', 'sLoadingRecords' );
 		}
@@ -11291,7 +11291,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sFirst": "First",
+				"sFirst": "처음으로",
 	
 	
 				/**
@@ -11314,7 +11314,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sLast": "Last",
+				"sLast": "끝",
 	
 	
 				/**
@@ -11383,7 +11383,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "저장된 데이터가 없습니다.",
 	
 	
 			/**
@@ -11415,7 +11415,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": "전체 _TOTAL_ 개 중 _START_에서 _END_까지 ",
 	
 	
 			/**
@@ -11436,7 +11436,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "전체 0개 중 0 에서 0 까지",
 	
 	
 			/**
@@ -11576,7 +11576,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "Show _MENU_ entries",
+			"sLengthMenu": "목록_MENU_",
 	
 	
 			/**
@@ -11600,7 +11600,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLoadingRecords": "Loading...",
+			"sLoadingRecords": "불러오는중...",
 	
 	
 			/**
@@ -11656,7 +11656,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Search:",
+			"sSearch": "검색 :",
 	
 	
 			/**
@@ -11714,7 +11714,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No matching records found"
+			"sZeroRecords": "일치하는 데이터가 없습니다."
 		},
 	
 	
@@ -14435,11 +14435,11 @@
 	
 	$.extend( extPagination, {
 		simple: function ( page, pages ) {
-			return [ 'previous', 'next' ];
+			return [ 'Previous', 'Next' ];
 		},
 	
 		full: function ( page, pages ) {
-			return [  'first', 'previous', 'next', 'last' ];
+			return [  '처음으로', 'Previous', 'Next', '끝' ];
 		},
 	
 		numbers: function ( page, pages ) {
@@ -14447,15 +14447,15 @@
 		},
 	
 		simple_numbers: function ( page, pages ) {
-			return [ 'previous', _numbers(page, pages), 'next' ];
+			return [ , _numbers(page, pages), ];
 		},
 	
 		full_numbers: function ( page, pages ) {
-			return [ 'first', 'previous', _numbers(page, pages), 'next', 'last' ];
+			return [ '처음으로', 'Previous', _numbers(page, pages), 'Next', '끝' ];
 		},
 		
 		first_last_numbers: function (page, pages) {
-	 		return ['first', _numbers(page, pages), 'last'];
+	 		return ['처음으로', _numbers(page, pages), '끝'];
 	 	},
 	
 		// For testing and plug-ins to use
@@ -14497,25 +14497,25 @@
 									container.append('<span class="ellipsis">&#x2026;</span>');
 									break;
 	
-								case 'first':
+								case '처음으로':
 									btnDisplay = lang.sFirst;
 									btnClass = button + (page > 0 ?
 										'' : ' '+classes.sPageButtonDisabled);
 									break;
 	
-								case 'previous':
+								case 'Previous':
 									btnDisplay = lang.sPrevious;
 									btnClass = button + (page > 0 ?
 										'' : ' '+classes.sPageButtonDisabled);
 									break;
 	
-								case 'next':
+								case 'Next':
 									btnDisplay = lang.sNext;
 									btnClass = button + (page < pages-1 ?
 										'' : ' '+classes.sPageButtonDisabled);
 									break;
 	
-								case 'last':
+								case '끝':
 									btnDisplay = lang.sLast;
 									btnClass = button + (page < pages-1 ?
 										'' : ' '+classes.sPageButtonDisabled);

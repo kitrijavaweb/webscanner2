@@ -13,6 +13,7 @@
 	rel="stylesheet" type="text/css">
 <!-- Custom styles for this template-->
 <link href="/webscanner/css/sb-admin.css" rel="stylesheet">
+<link rel="stylesheet" href="/webscanner/css/chart.css">
 <title>WebScanner - 메인</title>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">

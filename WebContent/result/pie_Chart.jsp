@@ -8,7 +8,6 @@
 <script src="/webscanner/js/chart/Chart.bundle.js"></script>
 <script src="/webscanner/js/chart/utils.js"></script>
 <script src="/webscanner/js/chart/excute.js"></script>
-<link rel="stylesheet" href="/webscanner/css/chart.css">
 
 </head>
 <body>

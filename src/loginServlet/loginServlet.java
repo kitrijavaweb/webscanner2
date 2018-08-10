@@ -14,14 +14,16 @@ import javax.servlet.http.HttpSession;
 import login.LoginDTO;
 import login.LoginService;
 import login.LoginServiceImpl;
+import util.PassSecurityMd;
 
 @WebServlet(name = "weblogin", urlPatterns = { "/webmain.do" })
 public class loginServlet extends HttpServlet {
+	@SuppressWarnings("static-access")
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+		PassSecurityMd md5 =new PassSecurityMd();
 		req.setCharacterEncoding("euc-kr");
 		String id = req.getParameter("userID");
-		String pass = req.getParameter("userPassword");
+		String pass = md5.MD5(req.getParameter("userPassword"));
 		String check = req.getParameter("id_remeber");
 		LoginService service =new LoginServiceImpl();
 		LoginDTO loginUser = service.loginCheck(id, pass);

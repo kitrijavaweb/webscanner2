@@ -19,29 +19,6 @@ body {
 	color: #555555;
 }
 </style>
-<script type="text/javascript">
-function userDelete(getUserId){
-	var userId= getUserId;
-	$.ajax({
-		type: 'POST',
-		url: '/webscanner/userdelete.do',
-		data: {userId: userId},
-		success: function(result){
-			if(result ==1){
-				$('#checkMessage').html("삭제완료");
-				$('#checkType').attr('class', 'modal-content panel-success');
-			}else{
-				$('#checkMessage').html("삭제할 수 없습니다.");
-				$('#checkType').attr('class', 'modal-content panel-warning');
-			}
-			$('#checkModal').modal("show");
-		}
-	})
-}
-function trDelete(obj){
-	$(obj).parent().parent().remove();
-}
-</script>
 <%
 ArrayList<UserDTO> userinfo = (ArrayList<UserDTO>) request.getAttribute("userlist");
 System.out.println(userinfo.size());
@@ -53,14 +30,15 @@ System.out.println(userinfo.size());
 		<input class="form-control" id="myInput" type="text"
 			placeholder="회원정보 검색  ex) test">
 		<table class="table table-bordered table-striped">
-			<thead>
+			<thead class="thead-dark">
 				<tr>
-					<th>계정</th>
-					<th>비밀번호</th>
-					<th>이름</th>
-					<th>회원구분</th>
-					<th>이메일</th>
-					<th>삭제</th>
+					<th scope="col">#</th>
+					<th scope="col">계정</th>
+					<th scope="col">비밀번호</th>
+					<th scope="col">이름</th>
+					<th scope="col">회원구분</th>
+					<th scope="col">이메일</th>
+					<th scope="col">삭제</th>
 				</tr>
 			</thead>
 			<tbody id="myTable">
@@ -68,12 +46,13 @@ System.out.println(userinfo.size());
     	UserDTO u=userinfo.get(i);
     %>
 				<tr>
-					<td><%= u.getUserID() %></td>
+					<td scope="col"><%= i+1 %></td>
+					<td class="text-primary"><%= u.getUserID() %></td>
 					<td><%= u.getUserPassword() %></td>
 					<td><%= u.getUserName() %></td>
 					<td><%= u.getUserSort() %></td>
 					<td><%= u.getUserEmail() %></td>
-					<td><Button class="btn btn-primary" type="button"
+					<td><Button class="btn btn-outline-success btn-sm" type="button"
 							onclick="userDelete('<%=u.getUserID()%>');trDelete(this)">삭제</Button></td>
 				</tr>
 				<%} %>
@@ -82,16 +61,6 @@ System.out.println(userinfo.size());
 
 	</div>
 
-	<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
 	<div class="modal fade" id="checkModal" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<div class="vertical-aligment-helper">
@@ -108,5 +77,6 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+	<script src="/webscanner/js/scan/delete.js" charset='UTF-8'></script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+<%@page import="pattern.PartternDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -15,71 +17,64 @@ body{
     color: #555555;
 }
 </style>
-
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#patternlist').DataTable();
+} );
+</script>
+<%ArrayList<PartternDTO> patternList =(ArrayList<PartternDTO>)  request.getAttribute("patternList"); 
+%>
 </head>
 <body>
-<div class="container">
+<div class="container center-block table-responsive">
   <h4>패턴목록</h4>
-  <form>
-  <div class="row justify-content-end">
-  <div class="cols-md-4">
- 	<select name="attackweb">
-  		<option value="SQL" selected="selected">SQL인젝션</option>
-  		<option value="Brute">BRUTE FORCE</option>
-  		<option value="XSS">XSS(크로스사이트스크립트)</option>
-	</select>
-  </div>
-  <div class="cols-md-4">
-  <input id="msg" type="text" class="form-control" name="msg" placeholder="패턴등록">
-  </div>
-  <div class="cols-md-4">
-  <button type="submit" class="btn btn-danger btn pull-right" style="font-size: 8pt">추가</button>
-  </div>
-  </div>
-  </form>
-  <input class="form-control" id="myInput" type="text" placeholder="패턴정보 검색  ex) SQL">
-  <table class="table table-bordered table-striped">
-    <thead>
+  <div class="container-fluid">
+  <form action="/webscanner/main/admin/pattern.do" method="get">
+			<div class="row justify-content-end">
+				<div class="col-offset-4 col-md-3">
+					<select name="attackweb">
+						<option value="SQL Injection" selected="selected">SQL인젝션</option>
+						<option value="BruteForce">BRUTE FORCE</option>
+						<option value="XSS">XSS(크로스사이트스크립트)</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<input name="pattern" type="text" class="form-control" name="msg"
+						placeholder="패턴" />
+				</div>
+				<div>
+					<button type="submit" class="btn btn-outline-primary pull-left"
+						style="font-size: 8pt">추가</button>
+				</div>
+			</div>
+		</form>
+		</div>
+  <div class="container-fluid border" style="padding: 10px">
+  <table id="patternlist"class="table table-bordered">
+    <thead class="thead-dark">
       <tr>
-        <th>패턴종류</th>
-        <th>내용</th>
-        <th>삭제</th>
+        <th scope="col">#</th>
+        <th scope="col">공격명</th>
+        <th scope="col">패턴</th>
+        <th scope="col">삭제</th>
       </tr>
     </thead>
     <tbody id="myTable">
+    <% for(int i=0;i<patternList.size();i++){
+    	PartternDTO p = patternList.get(i);
+    %>
       <tr>
-        <td>SQL INJECTION</td>
-        <td>패턴1</td>
-        <td><a href="#">삭제</a></td>
+        <th scope="col"><%=i+1 %></th>
+        <th class="text-primary"><%=p.getName() %></th>
+        <th class="text-danger"><%=p.getPattern() %></th>
+        <th><Button class="btn btn-outline-info btn-sm" type="button"
+			onclick="userDelete('<%=p.getPattern()%>');trDelete(this)">삭제</Button></th>
       </tr>
-      <tr>
-        <td>SQL INJECTION</td>
-        <td>패턴2</td>
-        <td><a href="#">삭제</a></td>
-      </tr>
-      <tr>
-        <td>SQL INJECTION</td>
-        <td>패턴3</td>
-        <td><a href="#">삭제</a></td>
-      </tr>
-      <tr>
-        <td>BRUTE FORCE</td>
-        <td>패턴1</td>
-        <td><a href="#">삭제</a></td>
-      </tr>
+      <%} %>
     </tbody>
   </table>
   </div>
-
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
+  </div>
+  	<script src="/webscanner/js/scan/pdelete.js" charset='UTF-8'></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package servlet;
+package pattern.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,20 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pattern.PatternServiceImpl;
+import pattern.patternService;
 import userInfo.UserService;
 import userInfo.UserServiceImpl;
 
-@WebServlet("/main/admin/userdelete.do")
-public class userDelete extends HttpServlet {
+@WebServlet("/main/admin/patterndelete.do")
+public class patternDelete extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("euc-kr");
 		res.setContentType("text/html;charset=euc-kr");
 		System.out.println("서블릿요청성공");
 
-		String id = req.getParameter("pattern");
-		System.out.println(id);
+		String pattern = req.getParameter("pattern");
+		System.out.println(pattern);
+		patternService service= new PatternServiceImpl();
 
-		UserService service = new UserServiceImpl();
-		res.getWriter().write(service.delete(id) + "");
+		res.getWriter().write(service.delete(pattern) + "");
 	}
 }

@@ -46,9 +46,9 @@ var DataTable = $.fn.dataTable;
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		"<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+		"<'row'<'col-sm-12 col-md-9'l><'col-sm-12 col-md-3'f>>" +
 		"<'row'<'col-sm-12'tr>>" +
-		"<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+		"<'row'<'col-sm-12 col-md-8'i><'col-sm-12 col-md-4'p>>",
 	renderer: 'bootstrap'
 } );
 
@@ -96,25 +96,25 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 						btnClass = 'disabled';
 						break;
 
-					case 'first':
+					case '처음으로':
 						btnDisplay = lang.sFirst;
 						btnClass = button + (page > 0 ?
 							'' : ' disabled');
 						break;
 
-					case 'previous':
+					case 'Previous':
 						btnDisplay = lang.sPrevious;
 						btnClass = button + (page > 0 ?
 							'' : ' disabled');
 						break;
 
-					case 'next':
+					case 'Next':
 						btnDisplay = lang.sNext;
 						btnClass = button + (page < pages-1 ?
 							'' : ' disabled');
 						break;
 
-					case 'last':
+					case '끝':
 						btnDisplay = lang.sLast;
 						btnClass = button + (page < pages-1 ?
 							'' : ' disabled');

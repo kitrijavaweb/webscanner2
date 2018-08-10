@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
@@ -65,7 +64,7 @@ body {
 					</div>
 					<button class="btn btn-primary btn-block" type="submit">로그인</button>
 					<div class="text-center">
-						<a class="d-block small mt-3" href="register.jsp">회원가입</a>
+						<a class="d-block small mt-3" href="/webscanner/template/register.jsp">회원가입</a>
 					</div>
 				</div>
 			</div>
