@@ -6,4 +6,5 @@ public interface patternService {
 	int insert(String name,String pattern);
 	ArrayList<PartternDTO> getPattern();
 	int delete(String pattern);
+	ArrayList<PartternDTO> getPattern(String name);
 }

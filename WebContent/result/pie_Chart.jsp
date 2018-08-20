@@ -8,7 +8,7 @@
 <script src="/webscanner/js/chart/Chart.bundle.js"></script>
 <script src="/webscanner/js/chart/utils.js"></script>
 <script src="/webscanner/js/chart/excute.js"></script>
-
+<link rel="stylesheet" href="/webscanner/css/chart.css">
 </head>
 <body>
 	<div class="container-fluid">
@@ -21,7 +21,7 @@
 			</div>
 			<div class="col-md-7">
 				<div id="container" style="width: 75%">
-					<canvas id="canvas"></canvas>
+					<canvas id="canvas"></canvas> 
 				</div>
 			</div>
 		</div>

@@ -60,4 +60,20 @@ public class PatternServiceImpl implements patternService {
 		}
 		return result;
 	}
+
+	@Override
+	public ArrayList<PartternDTO> getPattern(String name) {
+		PatternDAO dao = new PatternDAOImpl();
+		ArrayList<PartternDTO> Partternlist =null;
+		Connection con = null;
+		try {
+			con = DBconnect();
+			Partternlist =dao.getSQLPattern(name, con);
+		} catch (SQLException e) {
+			e.getStackTrace();
+		} finally {
+			close(con);
+		}
+		return Partternlist;
+	}
 }

@@ -43,7 +43,7 @@ body{
 </style>
 </head>
 <body>
-	<h3>전체검사</h3>
+	<h3>SQL Injection</h3>
 	<p class="lead">
 		전체검사를 진행할 URL을 입력해주세요. <br />
 	</p>
@@ -66,10 +66,11 @@ body{
 	</div>
 	<div class="form-group">
 		<p>진행상황</p>
-		<textarea class="form-control" id="resultText" rows="10" disabled="disabled">
+		<textarea class="form-control" id="resultText" rows="20" disabled="disabled">
       </textarea>
 	</div>
 	<br />
 	<br />
+	<script src="/webscanner/js/scan/sqlscan.js" charset='UTF-8'></script>
 </body>
 </html>

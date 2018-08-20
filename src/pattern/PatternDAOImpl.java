@@ -53,4 +53,20 @@ public class PatternDAOImpl implements PatternDAO {
 		close(ptmt);
 		return result;
 	}
+
+	@Override
+	public ArrayList<PartternDTO> getSQLPattern(String name, Connection con) throws SQLException {
+		PreparedStatement ptmt  = con.prepareStatement(SELECT_GET_PATTERN);
+		ArrayList<PartternDTO> patterninfo = new ArrayList<PartternDTO>();
+		PartternDTO e =null;
+		ptmt.setString(1, "%"+name+"%");
+		ResultSet rs = ptmt.executeQuery();
+		while (rs.next()) {
+			e= new PartternDTO(rs.getString(1), rs.getString(2));
+			patterninfo.add(e);
+		}
+		close(rs);
+		close(con);
+		return patterninfo;
+	}
 }

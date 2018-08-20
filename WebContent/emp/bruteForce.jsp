@@ -43,7 +43,7 @@ body{
 </style>
 </head>
 <body>
-	<h3>전체검사</h3>
+	<h3>취약한 인증(Brute Force)</h3>
 	<p class="lead">
 		전체검사를 진행할 URL을 입력해주세요. <br />
 	</p>
@@ -71,5 +71,6 @@ body{
 	</div>
 	<br />
 	<br />
+	<script src="/webscanner/js/scan/bfscan.js" charset='UTF-8'></script>
 </body>
 </html>

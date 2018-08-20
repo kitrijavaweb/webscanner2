@@ -43,7 +43,7 @@ body{
 </style>
 </head>
 <body>
-	<h3>전체검사</h3>
+	<h3>XSS(크로스 사이트 스크립트)</h3>
 	<p class="lead">
 		전체검사를 진행할 URL을 입력해주세요. <br />
 	</p>
@@ -71,5 +71,6 @@ body{
 	</div>
 	<br />
 	<br />
+	<script src="/webscanner/js/scan/xssScan.js" charset='UTF-8'></script>
 </body>
 </html>
